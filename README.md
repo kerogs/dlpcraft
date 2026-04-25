@@ -10,3 +10,15 @@ Liste de script, et autre pour YT-DLP
 ```sh
 .\yt-dlp.exe -i --sleep-interval 2 --max-sleep-interval 6 --retries infinite --fragment-retries infinite -x --audio-format mp3 --audio-quality 0 --prefer-ffmpeg --add-metadata --embed-thumbnail --restrict-filenames -o ".\othermusic\soundcloud\%(title)s - %(uploader)s.%(ext)s" "URL_ICI"
 ```
+
+## Youtube Emby PHP Script
+
+### Aide
+```sh
+php .\youtube_emby.php --help
+```
+
+### Vidéo youtube avec metadata (.nfo, .actors, Thumbnails, ETC)
+```sh
+php .\youtube_emby.php --url "URL_ICI"
+```
