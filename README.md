@@ -1,24 +1,4 @@
-# yt-dlp-cmd
-Liste de script, et autre pour YT-DLP
+# DLP-CRAFT
+A PHP script that lets you convert a YouTube video so that it's fully compatible with Emby (and similar platforms)
 
-## Youtube
-```sh
-.\yt-dlp.exe -i --sleep-interval 2 --max-sleep-interval 6 --retries infinite --fragment-retries infinite -x --audio-format mp3 --audio-quality 0 --prefer-ffmpeg --add-metadata --embed-thumbnail --restrict-filenames --yes-playlist --parse-metadata "title:%(artist)s - %(title)s" -o ".\othermusic\yt\%(artist)s - %(title)s.%(ext)s" "URL_ICI"
-```
-
-## Soundcloud
-```sh
-.\yt-dlp.exe -i --sleep-interval 2 --max-sleep-interval 6 --retries infinite --fragment-retries infinite -x --audio-format mp3 --audio-quality 0 --prefer-ffmpeg --add-metadata --embed-thumbnail --restrict-filenames -o ".\othermusic\soundcloud\%(title)s - %(uploader)s.%(ext)s" "URL_ICI"
-```
-
-## Youtube Emby PHP Script
-
-### Aide
-```sh
-php .\youtube_emby.php --help
-```
-
-### Vidéo youtube avec metadata (.nfo, .actors, Thumbnails, ETC)
-```sh
-php .\youtube_emby.php --url "URL_ICI"
-```
+## Todo
