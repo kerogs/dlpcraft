@@ -1,0 +1,80 @@
+/**
+* @license
+*
+* Font Family: Telma
+* Designed by: Jitka Janečková
+* URL: https://www.fontshare.com/fonts/telma
+* © 2026 Indian Type Foundry
+*
+* Telma Light
+* Telma Regular
+* Telma Medium
+* Telma Bold
+* Telma Black
+* Telma Variable (Variable font)
+
+*
+*/
+@font-face {
+  font-family: 'Telma-Light';
+  src: url('./Telma-Light.woff2') format('woff2'),
+       url('./Telma-Light.woff') format('woff'),
+       url('./Telma-Light.ttf') format('truetype');
+  font-weight: 300;
+  font-display: swap;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Telma-Regular';
+  src: url('./Telma-Regular.woff2') format('woff2'),
+       url('./Telma-Regular.woff') format('woff'),
+       url('./Telma-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-display: swap;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Telma-Medium';
+  src: url('./Telma-Medium.woff2') format('woff2'),
+       url('./Telma-Medium.woff') format('woff'),
+       url('./Telma-Medium.ttf') format('truetype');
+  font-weight: 500;
+  font-display: swap;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Telma-Bold';
+  src: url('./Telma-Bold.woff2') format('woff2'),
+       url('./Telma-Bold.woff') format('woff'),
+       url('./Telma-Bold.ttf') format('truetype');
+  font-weight: 700;
+  font-display: swap;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Telma-Black';
+  src: url('./Telma-Black.woff2') format('woff2'),
+       url('./Telma-Black.woff') format('woff'),
+       url('./Telma-Black.ttf') format('truetype');
+  font-weight: 900;
+  font-display: swap;
+  font-style: normal;
+}
+/**
+* This is a variable font
+* You can control variable axes as shown below:
+* font-variation-settings: wght 900.0;
+*
+* available axes:
+'wght' (range from 300.0 to 900.0
+*/
+@font-face {
+  font-family: 'Telma-Variable';
+  src: url('./Telma-Variable.woff2') format('woff2'),
+       url('./Telma-Variable.woff') format('woff'),
+       url('./Telma-Variable.ttf') format('truetype');
+  font-weight: 300 900;
+  font-display: swap;
+  font-style: normal;
+}
+
