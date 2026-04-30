@@ -109,7 +109,7 @@ dlpcraft uses a custom coffee-toned palette.
 | `$links` | `#A0713A` | Links, accents |
 | `$solid` | `#3D200A` | Buttons, badges, strong accents |
 
-Semantic colors (success, info, warning, error) follow the same warm-toned logic —  
+Semantic colors (success, info, warning, error) follow the same warm-toned logic -  
 see `assets/styles/scss/components/_themes.scss` for the full definitions.
 
 ---
@@ -129,8 +129,8 @@ sass --watch assets/styles/scss/style.scss assets/styles/css/style.css
 ## Contributing
 
 1. Fork the repository
-2. Create a feature branch — `git checkout -b feat/my-feature`
-3. Commit your changes — `git commit -m "feat: add my feature"`
+2. Create a feature branch - `git checkout -b feat/my-feature`
+3. Commit your changes - `git commit -m "feat: add my feature"`
 4. Push and open a Pull Request
 
 When adding a new yt-dlp parameter, add it to `paramsDefs` in `composer.js` following the existing structure.  
