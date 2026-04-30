@@ -166,6 +166,9 @@ main {
   flex: 3;
   transition: 0.4s ease-in-out;
 }
+#generator .sourcendurl {
+  margin-bottom: 0px !important;
+}
 #generator .outputCommand {
   display: flex;
   gap: 9px;
@@ -322,6 +325,41 @@ main {
   #generator .paramsList {
     grid-template-columns: 1fr;
   }
+}
+#generator .moreUrl {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+#generator .moreUrl .moreUrlLists {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+#generator .moreUrl .moreUrlLists__item:nth-child(1) {
+  margin-top: 10px;
+}
+#generator .moreUrl button {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  cursor: pointer;
+  background-color: rgb(239.1714285714, 229.6742857143, 215.4285714286);
+  border: 1px solid #D4C5B0;
+  border-radius: 8px;
+  padding: 8px;
+  color: #3D200A;
+  font-weight: bolder;
+}
+#generator .moreUrl button svg {
+  width: 18px;
+  height: 18px;
+  stroke: #3D200A;
+}
+#generator .moreUrl button:hover {
+  background-color: rgb(233.3428571429, 220.3485714286, 200.8571428571);
 }
 
 .alert-banner {

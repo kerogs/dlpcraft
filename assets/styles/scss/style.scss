@@ -206,6 +206,10 @@ main {
 		}
 	}
 
+	.sourcendurl{
+		margin-bottom: 0px !important;
+	}
+
 	.outputCommand {
 		display: flex;
 		gap: 9px;
@@ -395,6 +399,50 @@ main {
 	@media screen and (max-width: 400px) {
 		.paramsList {
 			grid-template-columns: 1fr;
+		}
+	}
+
+	.moreUrl{
+		display: flex;
+		flex-direction: column;
+		gap: 10px;
+		.moreUrlLists{
+			display: flex;
+			flex-direction: column;
+			gap: 15px;
+
+			&__item{
+				&:nth-child(1){
+					margin-top: 10px;
+				}
+			}
+		}
+		button{
+			width: 100%;
+
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			gap: 9px;
+
+			cursor: pointer;
+			background-color: c.adjust($background, $lightness: -4%);
+			border: 1px solid $border;
+			border-radius: 8px;
+			padding: 8px;
+			color: $solid;
+			font-weight: bolder;
+
+			svg{
+				width: 18px;
+				height: 18px;
+				stroke: $solid;
+
+			};
+
+			&:hover{
+				background-color: c.adjust($background, $lightness: -8%);
+			}
 		}
 	}
 }
