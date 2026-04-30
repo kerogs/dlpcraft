@@ -19,7 +19,7 @@
 
 <div align="center">
 
-![version](https://img.shields.io/badge/Version-1.2.2--beta-%23F5EFE6?style=flat-square&logo=github&logoColor=%23F5EFE6&labelColor=%232E2620&color=%23F5EFE6)
+![version](https://img.shields.io/badge/Version-1.3.1--beta-%23F5EFE6?style=flat-square&logo=github&logoColor=%23F5EFE6&labelColor=%232E2620&color=%23F5EFE6)
 
 </div>
 

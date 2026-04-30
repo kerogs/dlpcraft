@@ -385,6 +385,18 @@ main {
 			}
 		}
 	}
+
+	@media screen and (max-width: 500px) {
+		.paramsList {
+			grid-template-columns: 1fr 1fr;
+		}
+	}
+
+	@media screen and (max-width: 400px) {
+		.paramsList {
+			grid-template-columns: 1fr;
+		}
+	}
 }
 
 .alert-banner {
