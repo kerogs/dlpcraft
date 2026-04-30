@@ -313,6 +313,16 @@ main {
   background-color: #F5EFE6;
   transition: transform 0.2s ease-in-out;
 }
+@media screen and (max-width: 500px) {
+  #generator .paramsList {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+@media screen and (max-width: 400px) {
+  #generator .paramsList {
+    grid-template-columns: 1fr;
+  }
+}
 
 .alert-banner {
   display: flex;
