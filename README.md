@@ -19,12 +19,10 @@
 
 <div align="center">
 
-![version](https://img.shields.io/badge/Version-1.3.1--beta-%23F5EFE6?style=flat-square&logo=github&logoColor=%23F5EFE6&labelColor=%232E2620&color=%23F5EFE6)
+[![View site - GH Pages](https://img.shields.io/badge/View_site-GH_Pages-%23F5EFE6?style=flat-square&labelColor=%232E2620&color=%23F5EFE6)](https://kerogs.github.io/dlpcraft/)
+![version](https://img.shields.io/badge/Version-1.4.1--beta-%23F5EFE6?style=flat-square&logo=github&logoColor=%23F5EFE6&labelColor=%232E2620&color=%23F5EFE6)
 
 </div>
-
-
----
 
 ## What is dlpcraft?
 

@@ -220,8 +220,20 @@ function updateFfmpegWarning() {
 // =============================
 
 function render() {
-	// command
-	generator.querySelector('#urlCopy').value = buildCommand();
+
+	// build output
+	let moreUrlList = document.querySelectorAll(".moreUrlLists__item");
+
+	let moreUrlListArray = Array.from(moreUrlList)
+		.map(input => `"${input.value}"`)
+		.filter(v => v !== '""');
+
+	const extraUrls = moreUrlListArray.join(" ");
+
+	generator.querySelector('#urlCopy').value =
+		buildCommand() + (extraUrls ? " " + extraUrls : "");
+
+	// display warning if ffmpeg is required
 	updateFfmpegWarning();
 
 	// params list
@@ -293,8 +305,25 @@ paramsToggle.addEventListener('click', () => {
 });
 
 // =============================
+// More Url gestion
+// =============================
+function addNewUrl() {
+	const moreUrlList = document.querySelector('.moreUrlLists');
+
+	const input = document.createElement('input');
+	input.type = 'text';
+	input.className = 'moreUrlLists__item';
+	input.placeholder = 'Put a new url';
+
+	input.addEventListener('input', render);
+
+	moreUrlList.appendChild(input);
+}
+
+// =============================
 // Init
 // =============================
 ytdlpCustomPath.style.display = 'none';
 url.placeholder = urlTemplates[source.value];
 render();
+
