@@ -9,18 +9,21 @@
 </div>
 
 <h1 align="center">
-	DLP Craft
+	<i>dlpcraft</i>
 </h1>
 
 
 <p align="center">
-  YT-DLP command generator 
+  A visual command builder for yt-dlp
 </p>
 
 <div align="center">
 
 [![View site - GH Pages](https://img.shields.io/badge/View_site-GH_Pages-%23F5EFE6?style=flat-square&labelColor=%232E2620&color=%23F5EFE6)](https://kerogs.github.io/dlpcraft/)
-![version](https://img.shields.io/badge/Version-1.4.1--beta-%23F5EFE6?style=flat-square&logo=github&logoColor=%23F5EFE6&labelColor=%232E2620&color=%23F5EFE6)
+![version](https://img.shields.io/badge/Version-1.4.2--beta-%23F5EFE6?style=flat-square&logo=github&logoColor=%23F5EFE6&labelColor=%232E2620&color=%23F5EFE6)
+
+![banner](assets/images/banner_small.png)
+
 
 </div>
 
@@ -34,7 +37,6 @@ Paste a URL, toggle the options you need, and get a ready-to-run terminal comman
 - **Source auto-detection**: paste a URL and the source selector updates automatically
 - **Predefined flag sets**: per source (YouTube & SoundCloud)
 - **Advanced parameters panel**: toggle individual yt-dlp flags with descriptions
-
 
 ## Requirements
 
