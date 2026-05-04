@@ -1,5 +1,97 @@
 @import "../../fonts/telma/telma.css";
 @import "../../fonts/satoshi/satoshi.css";
+:root {
+  --bg-base: #F5EFE6;
+  --bg-surface: #EDE6D8;
+  --bg-overlay: #E5DCC8;
+  --bg-mantle: #DBD2BC;
+  --bg-crust: #D4C5B0;
+  --fg-base: #2E2620;
+  --fg-muted: #7A6A59;
+  --fg-subtle: #A09080;
+  --accent: #A0713A;
+  --accent-dim: rgba(160, 113, 58, 0.12);
+  --border: #D4C5B0;
+  --border-hi: #B8A898;
+  --error: #B84040;
+  --warning: #D4941A;
+  --success: #4A8A3A;
+  --info: #2E6A9E;
+  --syn-string: #8B6840;
+  --syn-keyword: #8A4A82;
+  --syn-fn: #4A8A3A;
+  --syn-class: #B8860B;
+  --syn-var: #9A5A30;
+  --syn-comment: #9A8878;
+  --syn-punc: #2E8A82;
+  --syn-const: #4A8A3A;
+  --syn-op: #8A4A4A;
+  --syn-type: #7A6A30;
+  --syn-number: #A07030;
+}
+
+[data-theme=dark],
+.dark {
+  --bg-base: #1A1410;
+  --bg-surface: #1E1812;
+  --bg-overlay: #221C16;
+  --bg-mantle: #2A2018;
+  --bg-crust: #3D3028;
+  --fg-base: #EDE4D8;
+  --fg-muted: #C8B8A8;
+  --fg-subtle: #6A5848;
+  --accent: #C9915A;
+  --accent-dim: rgba(201, 145, 90, 0.15);
+  --border: #3D3028;
+  --border-hi: #5A4A38;
+  --error: #D97070;
+  --warning: #C9911A;
+  --success: #7EB870;
+  --info: #6A9FCC;
+  --syn-string: #C8A882;
+  --syn-keyword: #CCA0C8;
+  --syn-fn: #7EB870;
+  --syn-class: #E8C060;
+  --syn-var: #E2A880;
+  --syn-comment: #5A4E42;
+  --syn-punc: #80CCC8;
+  --syn-const: #A0D890;
+  --syn-op: #CCA0A0;
+  --syn-type: #E8D898;
+  --syn-number: #E8C89A;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme=light]) {
+    --bg-base: #1A1410;
+    --bg-surface: #1E1812;
+    --bg-overlay: #221C16;
+    --bg-mantle: #2A2018;
+    --bg-crust: #3D3028;
+    --fg-base: #EDE4D8;
+    --fg-muted: #C8B8A8;
+    --fg-subtle: #6A5848;
+    --accent: #C9915A;
+    --accent-dim: rgba(201, 145, 90, 0.15);
+    --border: #3D3028;
+    --border-hi: #5A4A38;
+    --error: #D97070;
+    --warning: #C9911A;
+    --success: #7EB870;
+    --info: #6A9FCC;
+    --syn-string: #C8A882;
+    --syn-keyword: #CCA0C8;
+    --syn-fn: #7EB870;
+    --syn-class: #E8C060;
+    --syn-var: #E2A880;
+    --syn-comment: #5A4E42;
+    --syn-punc: #80CCC8;
+    --syn-const: #A0D890;
+    --syn-op: #CCA0A0;
+    --syn-type: #E8D898;
+    --syn-number: #E8C89A;
+  }
+}
 * {
   margin: 0;
   padding: 0;
@@ -9,8 +101,8 @@
 
 body {
   scroll-behavior: smooth;
-  background-color: #F5EFE6;
-  color: #2E2620;
+  background-color: var(--bg-base);
+  color: var(--fg-base);
 }
 
 .headingFont {
@@ -52,8 +144,8 @@ header nav ul li.logo .title h1 {
   line-height: 1;
 }
 header nav ul li.logo .title span.badge {
-  background-color: #3D200A;
-  color: #F5EFE6;
+  background-color: var(--accent);
+  color: var(--bg-base);
   font-size: 0.7rem;
   font-weight: 700;
   padding: 3px 6px;
@@ -61,30 +153,31 @@ header nav ul li.logo .title span.badge {
 }
 header nav ul li.logo p {
   font-size: 0.8rem;
-  color: #7A6A59;
+  color: var(--fg-muted);
 }
 header nav ul li.github {
   display: flex;
   align-items: center;
   gap: 6px;
-  background-color: #3D200A;
+  background-color: var(--accent);
   padding: 6px 12px;
-  color: #F5EFE6;
+  color: var(--bg-base);
   border-radius: 6px;
   font-weight: 700;
 }
 header nav ul li.github svg {
-  fill: #F5EFE6;
+  fill: var(--bg-base);
   width: 18px;
   height: 18px;
 }
 header nav ul li.github:hover {
-  background-color: rgba(61, 32, 10, 0.9);
+  background-color: var(--accent);
+  opacity: 0.85;
 }
 header nav ul li.buttons {
   width: 33px;
   height: 33px;
-  background-color: #3D200A;
+  background-color: var(--accent);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -95,22 +188,77 @@ header nav ul li.buttons {
 header nav ul li.buttons svg {
   width: 18px;
   height: 18px;
-  stroke: #F5EFE6;
+  stroke: var(--bg-base);
   flex-shrink: 0;
   transition: all 0.5s ease-in-out;
 }
 header nav ul li.buttons:hover {
-  background-color: rgba(61, 32, 10, 0.9);
+  opacity: 0.85;
 }
-header nav ul li.buttons:hover svg {
+header nav ul li.buttons:hover.rotate svg {
   rotate: 150deg;
 }
 
 hr.sep {
   width: 100%;
   height: 1px;
-  background-color: #D4C5B0;
+  background-color: var(--border);
   border: none;
+}
+
+p.sep.default {
+  text-align: center;
+  margin: 10px 0;
+  font-size: 0.8rem;
+  color: var(--fg-muted);
+}
+p.sep.mid {
+  display: flex;
+  align-items: center;
+  text-align: center;
+}
+p.sep.mid::before, p.sep.mid::after {
+  content: "";
+  flex: 1;
+  border-bottom: 1px solid var(--border);
+}
+p.sep.mid:not(:empty)::before {
+  margin-right: 0.55em;
+}
+p.sep.mid:not(:empty)::after {
+  margin-left: 0.55em;
+}
+
+footer {
+  margin: 5px auto;
+  padding: 0 20px;
+  max-width: 1100px;
+}
+footer div {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 5px;
+}
+footer div .stats {
+  color: var(--fg-muted);
+  font-style: italic;
+  font-size: 12px;
+}
+footer div .stats span {
+  font-weight: 700;
+}
+footer div .askForHelp {
+  color: var(--fg-muted);
+  font-style: italic;
+  font-size: 12px;
+}
+footer div .askForHelp a {
+  color: var(--accent);
+  text-decoration: none;
+}
+footer div .askForHelp a:hover {
+  text-decoration: underline;
 }
 
 main {
@@ -127,6 +275,9 @@ main {
 #generator > div:nth-child(2n) {
   margin-bottom: 20px;
 }
+#generator > div:last-child {
+  margin-bottom: 0;
+}
 #generator .areaName {
   text-align: left;
 }
@@ -136,7 +287,7 @@ main {
 }
 #generator .areaName p {
   font-size: 0.8rem;
-  color: #7A6A59;
+  color: var(--fg-muted);
 }
 #generator .areaName {
   margin-bottom: 5px;
@@ -146,8 +297,9 @@ main {
 #generator button {
   padding: 9px 12px;
   border-radius: 8px;
-  border: 1px solid #D4C5B0;
-  background-color: rgb(247.9142857143, 243.6628571429, 237.2857142857);
+  border: 1px solid var(--border);
+  background-color: var(--bg-surface);
+  color: var(--fg-base);
 }
 #generator .sourcendurl,
 #generator .ytdlpPath {
@@ -178,27 +330,28 @@ main {
 }
 #generator .outputCommand button {
   cursor: pointer;
-  background-color: #3D200A;
+  background-color: var(--accent);
+  border-color: var(--accent);
 }
 #generator .outputCommand button svg {
   display: block;
-  stroke: #F5EFE6;
+  stroke: var(--bg-base);
   width: 18px;
   height: 18px;
 }
 #generator .outputCommand button:hover {
-  background-color: rgba(61, 32, 10, 0.9);
+  opacity: 0.85;
 }
 #generator .outputCommand button.copied {
-  background-color: #EEF4E8;
-  border: 1px solid #7AAD3F;
+  background-color: var(--accent-dim);
+  border: 1px solid var(--success);
 }
 #generator .outputCommand button.copied svg {
-  stroke: #7AAD3F;
+  stroke: var(--success);
 }
 #generator .params {
-  border: 1px solid #3D200A;
-  background-color: #D4C5B0;
+  border: 1px solid var(--accent);
+  background-color: var(--bg-overlay);
   border-radius: 8px;
   padding: 8px;
   max-height: 43px;
@@ -224,14 +377,17 @@ main {
 #generator .params .title h3 svg {
   width: 18px;
   height: 18px;
-  stroke: #3D200A;
+  stroke: var(--accent);
 }
 #generator .params .title svg.chevron {
-  stroke: #3D200A;
+  stroke: var(--accent);
   transition: 0.4s ease-in-out;
 }
 #generator .params .title:hover svg.chevron, #generator .params .title.open svg.chevron {
   rotate: 90deg;
+}
+#generator hr.sep {
+  margin: 8px 0 0 0;
 }
 #generator .paramsList {
   display: grid;
@@ -243,22 +399,22 @@ main {
   display: flex;
   justify-content: space-between;
   gap: 12px;
-  background-color: rgb(247.9142857143, 243.6628571429, 237.2857142857);
-  border: 1px solid #D4C5B0;
+  background-color: var(--bg-surface);
+  border: 1px solid var(--border);
   border-radius: 8px;
   padding: 8px;
   cursor: pointer;
   transition: border-color 0.2s ease-in-out, opacity 0.2s ease-in-out;
 }
 #generator .paramsList .param-item.requires-ffmpeg {
-  background-color: #FBF3E0;
-  border: 1px solid #D4941A;
+  background-color: var(--accent-dim);
+  border: 1px solid var(--warning);
 }
 #generator .paramsList .param-item.disabled {
   opacity: 0.45;
 }
 #generator .paramsList .param-item:not(.disabled):hover {
-  border-color: #7A6A59;
+  border-color: var(--fg-muted);
 }
 #generator .paramsList .param-item .param-info {
   display: flex;
@@ -270,12 +426,12 @@ main {
 #generator .paramsList .param-item .param-info .param-name {
   font-size: 0.8rem;
   font-weight: 700;
-  color: #2E2620;
+  color: var(--fg-base);
   font-family: "Satoshi-Variable", monospace;
 }
 #generator .paramsList .param-item .param-info .param-desc {
   font-size: 0.72rem;
-  color: #7A6A59;
+  color: var(--fg-muted);
   line-height: 1.3;
 }
 #generator .paramsList .param-item .param-toggle {
@@ -291,8 +447,8 @@ main {
   position: absolute;
 }
 #generator .paramsList .param-item .param-toggle input[type=checkbox]:checked + .toggle-track {
-  background-color: #3D200A;
-  border-color: #3D200A;
+  background-color: var(--accent);
+  border-color: var(--accent);
 }
 #generator .paramsList .param-item .param-toggle input[type=checkbox]:checked + .toggle-track .toggle-thumb {
   transform: translateX(16px);
@@ -300,8 +456,8 @@ main {
 #generator .paramsList .param-item .param-toggle .toggle-track {
   position: absolute;
   inset: 0;
-  background-color: #D4C5B0;
-  border: 1px solid #7A6A59;
+  background-color: var(--border);
+  border: 1px solid var(--fg-muted);
   border-radius: 99px;
   cursor: pointer;
   transition: background-color 0.2s ease-in-out, border-color 0.2s ease-in-out;
@@ -313,7 +469,7 @@ main {
   width: 14px;
   height: 14px;
   border-radius: 50%;
-  background-color: #F5EFE6;
+  background-color: var(--bg-base);
   transition: transform 0.2s ease-in-out;
 }
 @media screen and (max-width: 500px) {
@@ -346,20 +502,20 @@ main {
   justify-content: center;
   gap: 9px;
   cursor: pointer;
-  background-color: rgb(239.1714285714, 229.6742857143, 215.4285714286);
-  border: 1px solid #D4C5B0;
+  background-color: var(--bg-mantle);
+  border: 1px solid var(--border);
   border-radius: 8px;
   padding: 8px;
-  color: #3D200A;
+  color: var(--accent);
   font-weight: bolder;
 }
 #generator .moreUrl button svg {
   width: 18px;
   height: 18px;
-  stroke: #3D200A;
+  stroke: var(--accent);
 }
 #generator .moreUrl button:hover {
-  background-color: rgb(233.3428571429, 220.3485714286, 200.8571428571);
+  background-color: var(--bg-crust);
 }
 
 .alert-banner {
@@ -369,15 +525,15 @@ main {
   margin: 14px 0 0;
   padding: 10px 14px;
   border-radius: 8px;
-  border: 1px solid #D4941A;
-  background-color: #FBF3E0;
-  color: #7A5100;
+  border: 1px solid var(--warning);
+  background-color: var(--accent-dim);
+  color: var(--fg-base);
 }
 .alert-banner > svg {
   flex-shrink: 0;
   width: 18px;
   height: 18px;
-  stroke: #D4941A;
+  stroke: var(--warning);
 }
 .alert-banner .alert-content {
   display: flex;
@@ -391,22 +547,131 @@ main {
 }
 .alert-banner .alert-content .alert-desc {
   font-size: 0.75rem;
-  color: #7A5100;
+  color: var(--fg-muted);
   opacity: 0.85;
 }
 .alert-banner .alert-link {
   flex-shrink: 0;
   font-size: 0.75rem;
   font-weight: 700;
-  color: #7A5100;
+  color: var(--fg-base);
   text-decoration: none;
-  border: 1px solid #D4941A;
+  border: 1px solid var(--warning);
   padding: 4px 10px;
   border-radius: 6px;
   white-space: nowrap;
   transition: background-color 0.2s;
 }
 .alert-banner .alert-link:hover {
-  background-color: #D4941A;
-  color: #FBF3E0;
+  background-color: var(--warning);
+  color: var(--bg-base);
+}
+
+.pregenCmd {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+  gap: 10px;
+  margin: 30px 0;
+}
+.pregenCmd__item {
+  aspect-ratio: 1/1;
+  overflow: hidden;
+  cursor: pointer;
+  background-color: var(--bg-mantle);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 8px;
+  color: var(--accent);
+  font-weight: bolder;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.pregenCmd__item .icon {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+.pregenCmd__item .icon svg {
+  width: 50px;
+  height: 50px;
+}
+.pregenCmd__item .icon svg.fill {
+  fill: var(--accent);
+}
+.pregenCmd__item .icon svg.stroke {
+  stroke: var(--accent);
+}
+.pregenCmd__item .text .badge {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+.pregenCmd__item .text .badge span {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  color: var(--fg-subtle);
+  font-size: 0.6rem;
+  font-weight: 800;
+}
+.pregenCmd__item .text .badge span svg {
+  width: 12px;
+  height: 12px;
+  stroke: var(--bg-base);
+}
+.pregenCmd__item .text p.title {
+  font-size: 0.8rem;
+}
+.pregenCmd__item .text p.desc {
+  font-size: 0.75rem;
+  color: var(--fg-muted);
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  max-height: 42px;
+  overflow: hidden;
+  transition: 0.4s ease-in-out;
+}
+.pregenCmd__item:hover .text p.desc {
+  overflow: visible;
+  max-height: 100px;
+  -webkit-line-clamp: 4;
+  line-clamp: 4;
+}
+.pregenCmd__item.ffmpeg {
+  border: 1px solid var(--warning);
+  color: var(--warning);
+}
+.pregenCmd__item:hover {
+  background-color: var(--bg-crust);
+}
+.pregenCmd__item.copied {
+  border: 1px solid var(--success);
+  color: var(--success);
+}
+.pregenCmd__item.copied svg.fill {
+  fill: var(--success);
+}
+.pregenCmd__item.copied svg.stroke {
+  stroke: var(--success);
+}
+
+@media screen and (max-width: 1000px) {
+  .pregenCmd {
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+  }
+}
+@media screen and (max-width: 700px) {
+  .pregenCmd {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+@media screen and (max-width: 350px) {
+  .pregenCmd {
+    grid-template-columns: 1fr;
+  }
 }/*# sourceMappingURL=style.css.map */

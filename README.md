@@ -20,7 +20,7 @@
 <div align="center">
 
 [![View site - GH Pages](https://img.shields.io/badge/View_site-GH_Pages-%23F5EFE6?style=flat-square&labelColor=%232E2620&color=%23F5EFE6)](https://kerogs.github.io/dlpcraft/)
-![version](https://img.shields.io/badge/Version-1.4.2--beta-%23F5EFE6?style=flat-square&logo=github&logoColor=%23F5EFE6&labelColor=%232E2620&color=%23F5EFE6)
+![version](https://img.shields.io/badge/Version-1.5.1--beta-%23F5EFE6?style=flat-square&logo=github&logoColor=%23F5EFE6&labelColor=%232E2620&color=%23F5EFE6)
 
 ![banner](assets/images/banner_small.png)
 
@@ -37,7 +37,7 @@ Paste a URL, toggle the options you need, and get a ready-to-run terminal comman
 - **Source auto-detection**: paste a URL and the source selector updates automatically
 - **Predefined flag sets**: per source (YouTube & SoundCloud)
 - **Advanced parameters panel**: toggle individual yt-dlp flags with descriptions
-
+- **Preconfigured yt-dlp command**: Use preconfigured command lines to get results faster and with better quality.
 ## Requirements
 
 ### Required
@@ -57,7 +57,7 @@ Paste a URL, toggle the options you need, and get a ready-to-run terminal comman
 
 ## Getting started
 
-**1. Get yt-dlp**
+**1. Get [yt-dlp](https://github.com/yt-dlp/yt-dlp/releases)**
 
 ```bash
 # via pip
@@ -85,7 +85,15 @@ You can clone the repository and run the index.html file locally if you'd like.
 3. Toggle any advanced parameters you need (optional)
 4. Click **Copy command** and paste it in your terminal
 
----
+### Recommended structure
+If you don't want to set up the paths, you can call the files directly. We recommend the following structure:
+```
+dlpcraft/
+├── ffmpeg.exe (optional)
+└── yt-dlp.exe
+```
+
+Be sure to specify in dlpcraft that you are calling ``yt-dlp.exe`` directly. Your commands will then be executed directly by calling the exe file.
 
 ## YT-DLP binary modes
 
@@ -94,25 +102,6 @@ You can clone the repository and run the index.html file locally if you'd like.
 | `yt-dlp` | `yt-dlp` | yt-dlp is installed system-wide and available in PATH |
 | `./yt-dlp.exe` | `.\yt-dlp.exe` | You downloaded the Windows standalone binary in your current directory |
 | Custom path | Your path | yt-dlp is somewhere specific, e.g. `C:\tools\yt-dlp.exe` |
-
-## Color palette
-
-dlpcraft uses a custom coffee-toned palette.
-
-| Variable | Hex | Role |
-|----------|-----|------|
-| `$background` | `#F5EFE6` | Page background |
-| `$foreground` | `#2E2620` | Primary text |
-| `$heading` | `#2E2620` | Headings |
-| `$muted` | `#7A6A59` | Secondary text, descriptions |
-| `$border` | `#D4C5B0` | Borders, dividers |
-| `$links` | `#A0713A` | Links, accents |
-| `$solid` | `#3D200A` | Buttons, badges, strong accents |
-
-Semantic colors (success, info, warning, error) follow the same warm-toned logic -  
-see `assets/styles/scss/components/_themes.scss` for the full definitions.
-
----
 
 ## SCSS
 

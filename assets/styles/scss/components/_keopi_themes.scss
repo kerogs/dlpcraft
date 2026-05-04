@@ -1,0 +1,99 @@
+// ═══════════════════════════════════════════════════════════════════════════
+//  Keopi - Color Palette Showcase
+//  Warm and cozy color themes for VSCode
+// ═══════════════════════════════════════════════════════════════════════════
+
+// ═══════════════════════════════════════════════════════════════════════════
+//  Dark Theme
+// ═══════════════════════════════════════════════════════════════════════════
+$dark: (
+    bg-base : #1A1410,
+    bg-surface : #1E1812,
+    bg-overlay : #221C16,
+    bg-mantle : #2A2018,
+    bg-crust : #3D3028,
+    fg-base : #EDE4D8,
+    fg-muted : #C8B8A8,
+    fg-subtle : #6A5848,
+    accent : #C9915A,
+    accent-dim : rgba(#C9915A, 0.15),
+    border : #3D3028,
+    border-hi : #5A4A38,
+    error : #D97070,
+    warning : #C9911A,
+    success : #7EB870,
+    info : #6A9FCC,
+    // syntax
+    syn-string : #C8A882,
+    syn-keyword: #CCA0C8,
+    syn-fn : #7EB870,
+    syn-class : #E8C060,
+    syn-var : #E2A880,
+    syn-comment: #5A4E42,
+    syn-punc : #80CCC8,
+    syn-const : #A0D890,
+    syn-op : #CCA0A0,
+    syn-type : #E8D898,
+    syn-number : #E8C89A,
+);
+
+// ═══════════════════════════════════════════════════════════════════════════
+//  Light Theme
+// ═══════════════════════════════════════════════════════════════════════════
+$light: (
+    bg-base : #F5EFE6,
+    bg-surface : #EDE6D8,
+    bg-overlay : #E5DCC8,
+    bg-mantle : #DBD2BC,
+    bg-crust : #D4C5B0,
+    fg-base : #2E2620,
+    fg-muted : #7A6A59,
+    fg-subtle : #A09080,
+    accent : #A0713A,
+    accent-dim : rgba(#A0713A, 0.12),
+    border : #D4C5B0,
+    border-hi : #B8A898,
+    error : #B84040,
+    warning : #D4941A,
+    success : #4A8A3A,
+    info : #2E6A9E,
+    // syntax
+    syn-string : #8B6840,
+    syn-keyword: #8A4A82,
+    syn-fn : #4A8A3A,
+    syn-class : #B8860B,
+    syn-var : #9A5A30,
+    syn-comment: #9A8878,
+    syn-punc : #2E8A82,
+    syn-const : #4A8A3A,
+    syn-op : #8A4A4A,
+    syn-type : #7A6A30,
+    syn-number : #A07030,
+);
+
+// ═══════════════════════════════════════════════════════════════════════════
+//  Mixins for theming
+// ═══════════════════════════════════════════════════════════════════════════
+@mixin theme-vars($map) {
+    @each $key, $val in $map {
+        --#{$key}: #{$val};
+    }
+}
+
+// ═══════════════════════════════════════════════════════════════════════════
+//  apply theme
+// ═══════════════════════════════════════════════════════════════════════════
+:root {
+	@include theme-vars($light);
+}
+
+[data-theme="dark"],
+.dark {
+	@include theme-vars($dark);
+}
+
+@media (prefers-color-scheme: dark) {
+	:root:not([data-theme="light"]) {
+		@include theme-vars($dark);
+	}
+}

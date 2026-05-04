@@ -5,6 +5,7 @@ const urlTemplates = {
 	youtube: 'https://www.youtube.com/watch?v=xxxxxxxx',
 	'youtu.be': 'https://youtu.be/xxxxxxxxx?si=yyyyyyyyy',
 	soundcloud: 'https://soundcloud.com/xxxx/yyyyyyy',
+	other: 'https://example.com/video',
 };
 
 /**
@@ -54,7 +55,7 @@ const paramsDefs = [
 		flag: '-x --audio-format mp3 --audio-quality 0',
 		youtubOnly: false,
 		requiresFfmpeg: true,
-		default: true,
+		default: false,
 	},
 	{
 		key: 'ffmpeg',
@@ -64,7 +65,7 @@ const paramsDefs = [
 		flag: '--prefer-ffmpeg',
 		youtubOnly: false,
 		requiresFfmpeg: true,
-		default: true,
+		default: false,
 	},
 
 	// Metadata & artwork
@@ -76,7 +77,7 @@ const paramsDefs = [
 		flag: '--add-metadata',
 		youtubOnly: false,
 		requiresFfmpeg: true,
-		default: true,
+		default: false,
 	},
 	{
 		key: 'thumbnail',
@@ -86,7 +87,7 @@ const paramsDefs = [
 		flag: '--embed-thumbnail',
 		youtubOnly: false,
 		requiresFfmpeg: true,
-		default: true,
+		default: false,
 	},
 	{
 		key: 'writeThumbnail',
@@ -154,16 +155,6 @@ const paramsDefs = [
 		requiresFfmpeg: false,
 		default: true,
 	},
-	// {
-	// 	key: 'sponsorBlock',
-	// 	label: '--sponsorblock-remove',
-	// 	name: 'Remove sponsor segments',
-	// 	desc: 'Auto-cut sponsors, intros and outros via SponsorBlock.',
-	// 	flag: '--sponsorblock-remove all',
-	// 	youtubOnly: true,
-	// 	requiresFfmpeg: false,
-	// 	default: false,
-	// },
 
 ];
 
@@ -192,15 +183,36 @@ function getBase() {
 	return mode === 'custom' ? (ytdlpCustomPath.value.trim() || 'yt-dlp') : mode === 'exe' ? '.\\yt-dlp.exe' : 'yt-dlp';
 }
 
+/**
+ * Detect source from a URL string.
+ * Returns 'youtube', 'soundcloud', or 'other'.
+ */
+function detectSource(rawUrl) {
+	try {
+		const { hostname } = new URL(rawUrl);
+		if (hostname === 'www.youtube.com' || hostname === 'youtu.be') return 'youtube';
+		if (hostname === 'soundcloud.com') return 'soundcloud';
+		return 'other';
+	} catch (_) {
+		return null; // invalid URL, don't change source
+	}
+}
+
 function buildCommand() {
 	const isYoutube = source.value === 'youtube';
 	const flags = paramsDefs
 		.filter(({ key, youtubOnly }) => state[key] && !(youtubOnly && !isYoutube))
 		.map(p => p.flag);
 
-	const output = isYoutube
-		? '-o "./dlpcraft/%(artist)s - %(title)s.%(ext)s"'
-		: '-o "./dlpcraft/%(title)s - %(uploader)s.%(ext)s"';
+	let output;
+	if (isYoutube) {
+		output = '-o "./dlpcraft/%(artist)s - %(title)s.%(ext)s"';
+	} else if (source.value === 'soundcloud') {
+		output = '-o "./dlpcraft/%(title)s - %(uploader)s.%(ext)s"';
+	} else {
+		// other: generic fallback template
+		output = '-o "./dlpcraft/%(title)s.%(ext)s"';
+	}
 
 	return [getBase(), ...flags, output, `"${url.value}"`].join(' ');
 }
@@ -218,7 +230,6 @@ function updateFfmpegWarning() {
 // =============================
 // Render
 // =============================
-
 function render() {
 
 	// build output
@@ -243,8 +254,6 @@ function render() {
 	paramsDefs.forEach(({ key, name, desc, youtubOnly, requiresFfmpeg }) => {
 		const unavailable = youtubOnly && !isYoutube;
 		const checked = state[key] && !unavailable;
-
-		const ffmpegBadge = "";
 
 		const item = document.createElement('div');
 		item.classList.add('param-item');
@@ -279,16 +288,16 @@ function render() {
 // Events
 // =============================
 source.addEventListener('change', () => {
-	url.placeholder = urlTemplates[source.value];
+	url.placeholder = urlTemplates[source.value] ?? urlTemplates.other;
 	render();
 });
 
 url.addEventListener('input', () => {
-	try {
-		const { hostname } = new URL(url.value);
-		if (hostname === 'www.youtube.com' || hostname === 'youtu.be') source.value = 'youtube';
-		else if (hostname === 'soundcloud.com') source.value = 'soundcloud';
-	} catch (_) { }
+	const detected = detectSource(url.value);
+	if (detected !== null) {
+		source.value = detected;
+		url.placeholder = urlTemplates[detected] ?? urlTemplates.other;
+	}
 	render();
 });
 
@@ -326,4 +335,3 @@ function addNewUrl() {
 ytdlpCustomPath.style.display = 'none';
 url.placeholder = urlTemplates[source.value];
 render();
-
