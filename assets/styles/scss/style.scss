@@ -1,5 +1,5 @@
 // themes
-@use "components/themes" as *;
+@use "components/keopi_themes" as *;
 @use "sass:color" as c;
 
 // fonts
@@ -7,6 +7,10 @@
 @import "../../fonts/satoshi/satoshi.css";
 
 $max-width: 1100px;
+
+// ─── Token aliases (mapped from keopi palette) ────────────────────────────────
+// These replace the old $background, $foreground, $solid, $muted, $border, etc.
+// Usage: var(--bg-base), var(--fg-base), var(--accent), etc.
 
 * {
 	margin: 0;
@@ -18,8 +22,8 @@ $max-width: 1100px;
 // main body
 body {
 	scroll-behavior: smooth;
-	background-color: $background;
-	color: $foreground;
+	background-color: var(--bg-base);
+	color: var(--fg-base);
 }
 
 .headingFont {
@@ -27,8 +31,6 @@ body {
 }
 
 header {
-	// background-color: red;
-
 	margin: 0 auto;
 	padding: 10px 20px;
 	max-width: $max-width;
@@ -62,13 +64,12 @@ header {
 						h1 {
 							font-size: 1.4rem;
 							font-weight: 900;
-							// change height
 							line-height: 1;
 						}
 
 						span.badge {
-							background-color: $solid;
-							color: $background;
+							background-color: var(--accent);
+							color: var(--bg-base);
 							font-size: 0.7rem;
 							font-weight: 700;
 							padding: 3px 6px;
@@ -78,7 +79,7 @@ header {
 
 					p {
 						font-size: 0.8rem;
-						color: $muted;
+						color: var(--fg-muted);
 					}
 				}
 
@@ -87,27 +88,28 @@ header {
 					align-items: center;
 					gap: 6px;
 
-					background-color: $solid;
+					background-color: var(--accent);
 					padding: 6px 12px;
-					color: $background;
+					color: var(--bg-base);
 					border-radius: 6px;
 					font-weight: 700;
 
 					svg {
-						fill: $background;
+						fill: var(--bg-base);
 						width: 18px;
 						height: 18px;
 					}
 
 					&:hover {
-						background-color: c.adjust($solid, $alpha: -0.1);
+						background-color: var(--accent);
+						opacity: 0.85;
 					}
 				}
 
 				&.buttons {
 					width: 33px;
 					height: 33px;
-					background-color: $solid;
+					background-color: var(--accent);
 					display: flex;
 					align-items: center;
 					justify-content: center;
@@ -118,16 +120,18 @@ header {
 					svg {
 						width: 18px;
 						height: 18px;
-						stroke: $background;
+						stroke: var(--bg-base);
 						flex-shrink: 0;
 						transition: all 0.5s ease-in-out;
 					}
 
 					&:hover {
-						background-color: c.adjust($solid, $alpha: -0.1);
+						opacity: 0.85;
 
-						svg {
-							rotate: 150deg;
+						&.rotate {
+							svg {
+								rotate: 150deg;
+							}
 						}
 					}
 				}
@@ -139,8 +143,77 @@ header {
 hr.sep {
 	width: 100%;
 	height: 1px;
-	background-color: $border;
+	background-color: var(--border);
 	border: none;
+}
+
+p.sep {
+
+	&.default {
+		text-align: center;
+		margin: 10px 0;
+		font-size: 0.8rem;
+		color: var(--fg-muted);
+	}
+
+	&.mid {
+		display: flex;
+		align-items: center;
+		text-align: center;
+
+		&::before,
+		&::after {
+			content: '';
+			flex: 1;
+			border-bottom: 1px solid var(--border);
+		}
+
+		&:not(:empty)::before {
+			margin-right: .55em;
+		}
+
+		&:not(:empty)::after {
+			margin-left: .55em;
+		}
+	}
+}
+
+footer {
+	margin: 5px auto;
+	padding: 0 20px;
+	max-width: $max-width;
+
+	div {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: 5px;
+
+		.stats {
+			color: var(--fg-muted);
+			font-style: italic;
+			font-size: 12px;
+
+			span {
+				font-weight: 700;
+			}
+		}
+
+		.askForHelp{
+			color: var(--fg-muted);
+			font-style: italic;
+			font-size: 12px;
+
+			a{
+				color: var(--accent);
+				text-decoration: none;
+
+				&:hover{
+					text-decoration: underline;
+				}
+			}
+		}
+	}
 }
 
 main {
@@ -156,10 +229,12 @@ main {
 	flex-direction: column;
 
 	>div {
-
-		// every 2 div add margin bottom
 		&:nth-child(2n) {
 			margin-bottom: 20px;
+		}
+
+		&:last-child {
+			margin-bottom: 0;
 		}
 	}
 
@@ -173,7 +248,7 @@ main {
 
 		p {
 			font-size: 0.8rem;
-			color: $muted;
+			color: var(--fg-muted);
 		}
 
 		margin-bottom: 5px;
@@ -184,8 +259,9 @@ main {
 	button {
 		padding: 9px 12px;
 		border-radius: 8px;
-		border: 1px solid $border;
-		background-color: c.adjust($background, $lightness: 2%);
+		border: 1px solid var(--border);
+		background-color: var(--bg-surface);
+		color: var(--fg-base);
 	}
 
 	.sourcendurl,
@@ -197,16 +273,16 @@ main {
 		select {
 			flex: 1;
 			cursor: pointer;
-			transition: .4s ease-in-out;
+			transition: 0.4s ease-in-out;
 		}
 
 		input {
 			flex: 3;
-			transition: .4s ease-in-out;
+			transition: 0.4s ease-in-out;
 		}
 	}
 
-	.sourcendurl{
+	.sourcendurl {
 		margin-bottom: 0px !important;
 	}
 
@@ -220,38 +296,39 @@ main {
 
 		button {
 			cursor: pointer;
-			background-color: $solid;
+			background-color: var(--accent);
+			border-color: var(--accent);
 
 			svg {
 				display: block;
-				stroke: $background;
+				stroke: var(--bg-base);
 				width: 18px;
 				height: 18px;
 			}
 
 			&:hover {
-				background-color: c.adjust($solid, $alpha: -0.1);
+				opacity: 0.85;
 			}
 
 			&.copied {
-				background-color: $success-bg;
-				border: 1px solid $success;
+				background-color: var(--accent-dim);
+				border: 1px solid var(--success);
 
 				svg {
-					stroke: $success;
+					stroke: var(--success);
 				}
 			}
 		}
 	}
 
 	.params {
-		border: 1px solid $solid;
-		background-color: $border;
+		border: 1px solid var(--accent);
+		background-color: var(--bg-overlay);
 		border-radius: 8px;
 		padding: 8px;
 		max-height: 43px;
 		overflow: hidden;
-		transition: .4s ease-in-out;
+		transition: 0.4s ease-in-out;
 
 		&.open {
 			overflow-y: auto;
@@ -274,13 +351,13 @@ main {
 				svg {
 					width: 18px;
 					height: 18px;
-					stroke: $solid;
+					stroke: var(--accent);
 				}
 			}
 
 			svg.chevron {
-				stroke: $solid;
-				transition: .4s ease-in-out;
+				stroke: var(--accent);
+				transition: 0.4s ease-in-out;
 			}
 
 			&:hover,
@@ -290,6 +367,10 @@ main {
 				}
 			}
 		}
+	}
+
+	hr.sep {
+		margin: 8px 0 0 0;
 	}
 
 	.paramsList {
@@ -302,16 +383,16 @@ main {
 			display: flex;
 			justify-content: space-between;
 			gap: 12px;
-			background-color: c.adjust($background, $lightness: 2%);
-			border: 1px solid $border;
+			background-color: var(--bg-surface);
+			border: 1px solid var(--border);
 			border-radius: 8px;
 			padding: 8px;
 			cursor: pointer;
-			transition: border-color .2s ease-in-out, opacity .2s ease-in-out;
+			transition: border-color 0.2s ease-in-out, opacity 0.2s ease-in-out;
 
-			&.requires-ffmpeg{
-				background-color: $warning-bg;
-				border: 1px solid $warning;
+			&.requires-ffmpeg {
+				background-color: var(--accent-dim);
+				border: 1px solid var(--warning);
 			}
 
 			&.disabled {
@@ -319,7 +400,7 @@ main {
 			}
 
 			&:not(.disabled):hover {
-				border-color: $muted;
+				border-color: var(--fg-muted);
 			}
 
 			.param-info {
@@ -332,13 +413,13 @@ main {
 				.param-name {
 					font-size: 0.8rem;
 					font-weight: 700;
-					color: $foreground;
+					color: var(--fg-base);
 					font-family: "Satoshi-Variable", monospace;
 				}
 
 				.param-desc {
 					font-size: 0.72rem;
-					color: $muted;
+					color: var(--fg-muted);
 					line-height: 1.3;
 				}
 			}
@@ -357,8 +438,8 @@ main {
 					position: absolute;
 
 					&:checked+.toggle-track {
-						background-color: $solid;
-						border-color: $solid;
+						background-color: var(--accent);
+						border-color: var(--accent);
 
 						.toggle-thumb {
 							transform: translateX(16px);
@@ -369,11 +450,11 @@ main {
 				.toggle-track {
 					position: absolute;
 					inset: 0;
-					background-color: $border;
-					border: 1px solid $muted;
+					background-color: var(--border);
+					border: 1px solid var(--fg-muted);
 					border-radius: 99px;
 					cursor: pointer;
-					transition: background-color .2s ease-in-out, border-color .2s ease-in-out;
+					transition: background-color 0.2s ease-in-out, border-color 0.2s ease-in-out;
 
 					.toggle-thumb {
 						position: absolute;
@@ -382,8 +463,8 @@ main {
 						width: 14px;
 						height: 14px;
 						border-radius: 50%;
-						background-color: $background;
-						transition: transform .2s ease-in-out;
+						background-color: var(--bg-base);
+						transition: transform 0.2s ease-in-out;
 					}
 				}
 			}
@@ -402,22 +483,24 @@ main {
 		}
 	}
 
-	.moreUrl{
+	.moreUrl {
 		display: flex;
 		flex-direction: column;
 		gap: 10px;
-		.moreUrlLists{
+
+		.moreUrlLists {
 			display: flex;
 			flex-direction: column;
 			gap: 15px;
 
-			&__item{
-				&:nth-child(1){
+			&__item {
+				&:nth-child(1) {
 					margin-top: 10px;
 				}
 			}
 		}
-		button{
+
+		button {
 			width: 100%;
 
 			display: flex;
@@ -426,22 +509,21 @@ main {
 			gap: 9px;
 
 			cursor: pointer;
-			background-color: c.adjust($background, $lightness: -4%);
-			border: 1px solid $border;
+			background-color: var(--bg-mantle);
+			border: 1px solid var(--border);
 			border-radius: 8px;
 			padding: 8px;
-			color: $solid;
+			color: var(--accent);
 			font-weight: bolder;
 
-			svg{
+			svg {
 				width: 18px;
 				height: 18px;
-				stroke: $solid;
+				stroke: var(--accent);
+			}
 
-			};
-
-			&:hover{
-				background-color: c.adjust($background, $lightness: -8%);
+			&:hover {
+				background-color: var(--bg-crust);
 			}
 		}
 	}
@@ -454,15 +536,15 @@ main {
 	margin: 14px 0 0;
 	padding: 10px 14px;
 	border-radius: 8px;
-	border: 1px solid $warning;
-	background-color: $warning-bg;
-	color: $warning-fg;
+	border: 1px solid var(--warning);
+	background-color: var(--accent-dim);
+	color: var(--fg-base);
 
 	>svg {
 		flex-shrink: 0;
 		width: 18px;
 		height: 18px;
-		stroke: $warning;
+		stroke: var(--warning);
 	}
 
 	.alert-content {
@@ -478,7 +560,7 @@ main {
 
 		.alert-desc {
 			font-size: 0.75rem;
-			color: $warning-fg;
+			color: var(--fg-muted);
 			opacity: 0.85;
 		}
 	}
@@ -487,17 +569,162 @@ main {
 		flex-shrink: 0;
 		font-size: 0.75rem;
 		font-weight: 700;
-		color: $warning-fg;
+		color: var(--fg-base);
 		text-decoration: none;
-		border: 1px solid $warning;
+		border: 1px solid var(--warning);
 		padding: 4px 10px;
 		border-radius: 6px;
 		white-space: nowrap;
-		transition: background-color .2s;
+		transition: background-color 0.2s;
 
 		&:hover {
-			background-color: $warning;
-			color: $warning-bg;
+			background-color: var(--warning);
+			color: var(--bg-base);
 		}
 	}
+}
+
+.pregenCmd {
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+	gap: 10px;
+	margin: 30px 0;
+
+	&__item {
+		aspect-ratio: 1/1;
+		overflow: hidden;
+		cursor: pointer;
+		background-color: var(--bg-mantle);
+		border: 1px solid var(--border);
+		border-radius: 8px;
+		padding: 8px;
+		color: var(--accent);
+		font-weight: bolder;
+		display: flex;
+		flex-direction: column;
+		justify-content: space-between;
+
+		.icon {
+			flex: 1;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+
+			position: relative;
+
+			svg {
+				width: 50px;
+				height: 50px;
+
+				&.fill {
+					fill: var(--accent);
+				}
+
+				&.stroke {
+					stroke: var(--accent);
+				}
+			}
+
+		}
+
+		.text {
+			.badge{
+				display: flex;
+				align-items: center;
+				gap: 4px;
+
+				span{
+					display: flex;
+					align-items: center;
+					gap: 4px;
+					color: var(--fg-subtle);
+					font-size: 0.6rem;
+					font-weight: 800;
+
+					svg{
+						width: 12px;
+						height: 12px;
+						stroke: var(--bg-base);
+					}
+				}
+			}
+
+			p.title {
+				font-size: 0.8rem;
+			}
+
+			p.desc {
+				font-size: 0.75rem;
+				color: var(--fg-muted);
+
+				display: -webkit-box;
+				-webkit-box-orient: vertical;
+				-webkit-line-clamp: 2;
+				line-clamp: 2;
+
+				max-height: 42px;
+
+				overflow: hidden;
+
+				transition: 0.4s ease-in-out;
+			}
+		}
+
+		&:hover {
+			.text {
+				p.desc {
+					overflow: visible;
+					max-height: 100px;
+					-webkit-line-clamp: 4;
+					line-clamp: 4;
+				}
+			}
+		}
+
+		&.ffmpeg {
+			border: 1px solid var(--warning);
+			color: var(--warning);
+		}
+
+		&:hover {
+			background-color: var(--bg-crust);
+		}
+
+		&.copied {
+			border: 1px solid var(--success);
+			color: var(--success);
+
+			svg {
+				&.fill {
+					fill: var(--success);
+				}
+
+				&.stroke {
+					stroke: var(--success);
+				}
+			}
+		}
+
+	}
+}
+
+@media screen and (max-width: 1000px) {
+	.pregenCmd {
+		grid-template-columns: 1fr 1fr 1fr 1fr;
+	}
+
+}
+
+@media screen and (max-width: 700px) {
+	.pregenCmd {
+		grid-template-columns: 1fr 1fr;
+	}
+
+}
+
+@media screen and (max-width: 350px) {
+	.pregenCmd {
+		grid-template-columns: 1fr;
+	}
+
 }
